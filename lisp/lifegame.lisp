@@ -11,7 +11,7 @@
     (setf field (evolve field))
     (clear-screen)
     (dump-field field)
-    (sleep 0.1)))
+    (sleep 0.1))) ; 100[ms]
 
 (defun evolve (field)
   (let* ((height  (array-dimension field 0))

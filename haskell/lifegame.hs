@@ -18,7 +18,7 @@ lifegame :: Field -> IO ()
 lifegame field = do
   clearScreen
   dumpField field
-  usleep 100000
+  usleep 100000 -- 100[ms]
   lifegame $ evolve field
 
 initField :: Int -> Int -> StdGen -> Field

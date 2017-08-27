@@ -4,11 +4,14 @@ import time
 
 def main():
     field = init_field(width=40, height=20)
-    while True:
-        clear_screen()
-        dump_field(field)
-        time.sleep(0.1) # 100[ms]
-        field = evolve(field)
+    try:
+        while True:
+            clear_screen()
+            dump_field(field)
+            time.sleep(0.1) # 100[ms]
+            field = evolve(field)
+    except KeyboardInterrupt as e:
+        return
 
 def init_field(height, width):
     return [ [ random.randint(0, 1) for x in range(width) ] for y in range(height) ]

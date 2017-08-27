@@ -3,8 +3,7 @@ defmodule Lifegame do
   defstruct [:field, :height, :width]
 
   def init_field(height: height, width: width) do
-    {y_range, x_range} = { Enum.to_list(0..height-1), Enum.to_list(0..width-1) }
-    list = for y <- y_range, x <- x_range do
+    list = for y <- 0..height-1, x <- 0..width-1 do
       {index(y, x), :rand.uniform(2) - 1}
     end
     %Lifegame{field: Keyword.new(list), height: height, width: width}
@@ -19,8 +18,7 @@ defmodule Lifegame do
   end
 
   def evolve(%Lifegame{height: height, width: width} = lifegame) do
-    {y_range, x_range} = { Enum.to_list(0..height-1), Enum.to_list(0..width-1) }
-    list = for y <- y_range, x <- x_range do
+    list = for y <- 0..height-1, x <- 0..width-1 do
       {index(y, x), dead_or_alive(lifegame, {y,x})}
     end
     %Lifegame{field: Keyword.new(list), height: height, width: width}

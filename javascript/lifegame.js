@@ -25,7 +25,7 @@ class Lifegame {
     this.clearScreen();
     this.dumpField(this.field);
     this.field = this.evolve(this.field);
-    setTimeout(this.loop.bind(this), 100);
+    setTimeout(this.loop.bind(this), 100); // 100ms
   }
 
   evolve() {

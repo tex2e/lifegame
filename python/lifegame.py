@@ -17,24 +17,29 @@ class Lifegame:
                 self.clear_screen()
                 self.dump_field()
                 time.sleep(0.1) # 100[ms]
-                self.field = self.evolve()
+                self.field = self.evolve(self.field)
         except KeyboardInterrupt as e:
             return
 
-    def evolve(self):
-        new_field = [ [ self.dead_or_alive(y, x) for x in range(self.width) ]
-                      for y in range(self.height) ]
+    @classmethod
+    def evolve(cls, field):
+        height, width = len(field), len(field[0])
+        new_field = [ [ cls.dead_or_alive(field, y, x) for x in range(width) ]
+                      for y in range(height) ]
         return new_field
 
-    def dead_or_alive(self, y, x):
-        alive_neighbours = self.count_alive_neighbours(y, x)
+    @classmethod
+    def dead_or_alive(cls, field, y, x):
+        alive_neighbours = cls.count_alive_neighbours(field, y, x)
         if alive_neighbours <= 1: return 0
-        if alive_neighbours == 2: return self.field[y][x]
+        if alive_neighbours == 2: return field[y][x]
         if alive_neighbours == 3: return 1
         if alive_neighbours >= 4: return 0
 
-    def count_alive_neighbours(self, y, x):
-        neighbours = [ self.field[(y + yi) % self.height][(x + xi) % self.width]
+    @classmethod
+    def count_alive_neighbours(cls, field, y, x):
+        height, width = len(field), len(field[0])
+        neighbours = [ field[(y + yi) % height][(x + xi) % width]
                        for yi in [-1,0,1] for xi in [-1,0,1] if not (yi == 0 and xi == 0) ]
         return sum(neighbours)
 
@@ -44,7 +49,8 @@ class Lifegame:
         lines = [ ''.join(char_field[y]) for y in range(self.height) ]
         print("\n".join(lines))
 
-    def clear_screen(self):
+    @classmethod
+    def clear_screen(cls):
         print("\033[;H\033[2J")
 
 

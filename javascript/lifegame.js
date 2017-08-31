@@ -48,8 +48,8 @@ class Lifegame {
     var count = 0;
     for (var yi = -1; yi <= 1; yi++) {
       for (var xi = -1; xi <= 1; xi++) {
-        if (yi == 0 && xi == 0) continue;
-        if (field[this.mod(y + yi, this.height)][this.mod(x + xi, this.width)]) {
+        if (yi === 0 && xi === 0) continue;
+        if (field[this.mod(y + yi, this.height)][this.mod(x + xi, this.width)] === 1) {
           count++;
         }
       }
@@ -67,7 +67,7 @@ class Lifegame {
     var field = this.field;
     var lines = field.map(function (line) {
       return line.map(function (cell) {
-        return (cell == 0) ? ' ' : 'o';
+        return (cell === 0) ? ' ' : 'o';
       }).join('');
     });
     console.log(lines.join("\n"));

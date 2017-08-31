@@ -1,4 +1,4 @@
-# Lifegame in Lisp
+# Lifegame in Common Lisp
 
 ## Usage
 

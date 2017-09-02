@@ -28,10 +28,9 @@ class Lifegame
 
   def dead_or_alive(field, y, x)
     case count_alive_neighbours(field, y, x)
-    when 0..1 then 0
-    when 2    then field[y][x]
-    when 3    then 1
-    when 4..9 then 0
+    when 2 then field[y][x]
+    when 3 then 1
+    else        0
     end
   end
 

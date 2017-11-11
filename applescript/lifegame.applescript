@@ -4,9 +4,9 @@ set fieldHeight to 20
 set fieldWidth to 40
 set field to {}
 repeat with y from 1 to fieldHeight
-  set end of field to {}
+  set field's end to {}
   repeat with x from 1 to fieldWidth
-    set end of item y of field to random number from 0 to 1
+    set field's item y's end to random number from 0 to 1
   end repeat
 end repeat
 
@@ -22,7 +22,7 @@ on disp(field, fieldHeight, fieldWidth)
     set tmp to {}
     repeat with x from 1 to fieldWidth
       set cell to item x of item y of field
-      set end of tmp to item (cell + 1) of {" ", "o"}
+      set tmp's end to item (cell + 1) of {" ", "o"}
     end repeat
     log convertListToString(tmp, "")
   end repeat
@@ -50,11 +50,11 @@ on evolve(field, fieldHeight, fieldWidth)
     repeat with x from 1 to fieldWidth
       set cellCount to countAliveNeighbours(field, fieldHeight, fieldWidth, y, x)
       if cellCount = 2 then
-        set end of item y of newField to field's item y's item x
+        set newField's item y's end to field's item y's item x
       else if cellCount = 3 then
-        set end of item y of newField to 1
+        set newField's item y's end to 1
       else
-        set end of item y of newField to 0
+        set newField's item y's end to 0
       end if
     end repeat
   end repeat

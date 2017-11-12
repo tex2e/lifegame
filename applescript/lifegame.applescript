@@ -17,7 +17,7 @@ on convertListToString(theList, theDelimiter)
   return theString
 end convertListToString
 
-on disp(field, fieldHeight, fieldWidth)
+on dumpField(field, fieldHeight, fieldWidth)
   repeat with y from 1 to fieldHeight
     set tmp to {}
     repeat with x from 1 to fieldWidth
@@ -26,7 +26,7 @@ on disp(field, fieldHeight, fieldWidth)
     end repeat
     log convertListToString(tmp, "")
   end repeat
-end disp
+end dumpField
 
 on countAliveNeighbours(field, fieldHeight, fieldWidth, y, x)
   local cellCount, y_i, x_i
@@ -63,7 +63,7 @@ end evolve
 
 repeat
   log do shell script "echo '\\033[;H\\033[2J'"
-  disp(field, fieldHeight, fieldWidth)
+  dumpField(field, fieldHeight, fieldWidth)
   set newField to evolve(field, fieldHeight, fieldWidth)
   copy newField to field
 end repeat

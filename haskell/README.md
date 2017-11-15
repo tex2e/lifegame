@@ -1,5 +1,11 @@
 # Lifegame in Haskell
 
+## Install
+
+```
+brew install ghc
+```
+
 ## Install Libraries
 
 ```

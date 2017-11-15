@@ -1,5 +1,11 @@
 # Lifegame in D
 
+## Install
+
+```
+brew install dmd
+```
+
 ## Usage
 
 ```

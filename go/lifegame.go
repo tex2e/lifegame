@@ -35,12 +35,10 @@ func initField() {
 func evolve() {
     for y := 0; y < height; y++ {
         for x := 0; x < width; x++ {
-            aliveNeighbours := countAliveNeighbours(y, x)
-            switch {
-            case aliveNeighbours <= 1: newField[y][x] = 0
-            case aliveNeighbours == 2: newField[y][x] = field[y][x]
-            case aliveNeighbours == 3: newField[y][x] = 1
-            case aliveNeighbours >= 4: newField[y][x] = 0
+            switch countAliveNeighbours(y, x) {
+            case 2:  newField[y][x] = field[y][x]
+            case 3:  newField[y][x] = 1
+            default: newField[y][x] = 0
             }
         }
     }
@@ -60,9 +58,7 @@ func countAliveNeighbours(y int, x int) int {
 }
 
 func mod(a int, b int) int {
-    if a > 0 { return a % b }
-    if a < 0 { return (a + b) % b }
-    return 0
+    return (a + b) % b
 }
 
 func prepareNext() {

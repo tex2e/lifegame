@@ -1,5 +1,11 @@
 # Lifegame in COBOL
 
+## Install
+
+```
+brew install open-cobol
+```
+
 ## Usage
 
 ```

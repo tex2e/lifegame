@@ -1,5 +1,11 @@
 # Lifegame in Bash
 
+## Install
+
+```
+brew install bash
+```
+
 ## Usage
 
 ```

@@ -1,5 +1,11 @@
 # Lifegame in F#
 
+## Install
+
+```
+brew install mono
+```
+
 ## Usage
 
 ```

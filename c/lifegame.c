@@ -48,11 +48,11 @@ void evolve() {
     int x, y;
     for (y = 0; y < HEIGHT; y++) {
         for (x = 0; x < WIDTH; x++) {
-            int alive_neighbours = count_alive_neighbours(y, x);
-            if (alive_neighbours <= 1) new_field[y][x] = 0;
-            if (alive_neighbours == 2) new_field[y][x] = field[y][x];
-            if (alive_neighbours == 3) new_field[y][x] = 1;
-            if (alive_neighbours >= 4) new_field[y][x] = 0;
+            switch (count_alive_neighbours(y, x)) {
+                case 2:  new_field[y][x] = field[y][x]; break;
+                case 3:  new_field[y][x] = 1;           break;
+                default: new_field[y][x] = 0;
+            }
         }
     }
 }

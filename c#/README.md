@@ -1,5 +1,11 @@
 # Lifegame in C#
 
+## Install
+
+```
+brew install mono
+```
+
 ## Usage
 
 ```

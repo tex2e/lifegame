@@ -21,11 +21,10 @@ class Lifegame
     for y in [0..@height-1]
       for x in [0..@width-1]
         aliveNeighbours = this.countAliveNeighbours(y, x)
-        switch
-          when aliveNeighbours <= 1 then 0
-          when aliveNeighbours == 2 then @field[y][x]
-          when aliveNeighbours == 3 then 1
-          when aliveNeighbours >= 4 then 0
+        switch aliveNeighbours
+          when 2 then @field[y][x]
+          when 3 then 1
+          else        0
 
   countAliveNeighbours: (y, x) ->
     count = 0

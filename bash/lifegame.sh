@@ -27,10 +27,9 @@ function evolve {
     for x in `seq 0 $((width - 1))`; do
       alive_neighbours=$(count_alive_neighbours "$y" "$x")
       case $alive_neighbours in
-        [0-1] ) new_field[$y,$x]=0 ;;
-        2     ) new_field[$y,$x]=${field[$y,$x]} ;;
-        3     ) new_field[$y,$x]=1 ;;
-        [4-9] ) new_field[$y,$x]=0 ;;
+        2 ) new_field[$y,$x]=${field[$y,$x]} ;;
+        3 ) new_field[$y,$x]=1 ;;
+        * ) new_field[$y,$x]=0 ;;
       esac
     done
   done

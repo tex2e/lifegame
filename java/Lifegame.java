@@ -47,12 +47,11 @@ public class Lifegame {
     }
 
     public int deadOrAlive(int[][] field, int y, int x) {
-        int aliveNeighbours = countAliveNeighbours(field, y, x);
-        if (aliveNeighbours <= 1) return 0;
-        if (aliveNeighbours == 2) return field[y][x];
-        if (aliveNeighbours == 3) return 1;
-        if (aliveNeighbours >= 4) return 0;
-        return 0;
+        switch (countAliveNeighbours(field, y, x)) {
+            case 2:  return field[y][x];
+            case 3:  return 1;
+            default: return 0;
+        }
     }
 
     public int countAliveNeighbours(int[][] field, int y, int x) {
@@ -64,9 +63,7 @@ public class Lifegame {
     }
 
     private int mod(int a, int b) {
-        if (a > 0) return a % b;
-        if (a < 0) return (a + b) % b;
-        return 0;
+        return (a + b) % b;
     }
 
     public void dumpField() {

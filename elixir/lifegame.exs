@@ -28,14 +28,11 @@ defmodule Lifegame do
     String.to_atom("#{y},#{x}")
   end
 
-  defp dead_or_alive(
-      %Lifegame{field: field} = lifegame, {y,x}) do
-    alive_neighbours = count_alive_neighbours(lifegame, {y,x})
-    cond do
-      alive_neighbours <= 1 -> 0
-      alive_neighbours == 2 -> Keyword.fetch!(field, index(y, x))
-      alive_neighbours == 3 -> 1
-      alive_neighbours >= 4 -> 0
+  defp dead_or_alive(%Lifegame{field: field} = lifegame, {y,x}) do
+    case count_alive_neighbours(lifegame, {y,x}) do
+      2 -> Keyword.fetch!(field, index(y, x))
+      3 -> 1
+      _ -> 0
     end
   end
 

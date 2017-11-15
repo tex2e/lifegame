@@ -1,5 +1,11 @@
 # Lifegame in Erlang
 
+## Install
+
+```
+brew install erlang
+```
+
 ## Usage
 
 ```

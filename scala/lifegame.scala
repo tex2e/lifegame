@@ -48,9 +48,7 @@ class Lifegame(height: Int, width: Int) {
   }
 
   def mod(a: Int, b: Int): Int = {
-    if (a > 0) return a % b
-    if (a < 0) return (a + b) % b
-    return 0
+    return (a + b) % b
   }
 
   def dumpField() = {

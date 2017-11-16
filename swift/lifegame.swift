@@ -31,15 +31,17 @@ class Lifegame {
     }
 
     func evolve() -> Array<Array<Int>> {
-        var newField: Array<Array<Int>> =
-            Array(repeating: Array(repeating: 0, count: width), count: height)
+        var newField = Array(repeating: Array(repeating: 0, count: width), count: height)
         for y in 0 ..< height {
             for x in 0 ..< width {
-                let aliveNeighbours = countAliveNeighbours(y: y, x: x)
-                if aliveNeighbours <= 1 { newField[y][x] = 0 }
-                if aliveNeighbours == 2 { newField[y][x] = field[y][x] }
-                if aliveNeighbours == 3 { newField[y][x] = 1 }
-                if aliveNeighbours >= 4 { newField[y][x] = 0 }
+                switch countAliveNeighbours(y: y, x: x) {
+                case 2:
+                    newField[y][x] = field[y][x]
+                case 3:
+                    newField[y][x] = 1
+                default:
+                    newField[y][x] = 0
+                }
             }
         }
         return newField
@@ -59,9 +61,7 @@ class Lifegame {
     }
 
     func mod(_ a: Int, divBy b: Int) -> Int {
-        if a > 0 { return a % b }
-        if a < 0 { return (a + b) % b }
-        return 0
+        return (a + b) % b
     }
 
     func dumpField() {

@@ -61,9 +61,7 @@
     return count;
 }
 - (int)mod:(int)a b:(int)b {
-    if (a > 0) return a % b;
-    if (a < 0) return (a + b) % b;
-    return 0;
+    return (a + b) % b;
 }
 - (void)dump_field {
     int x, y;

@@ -51,9 +51,7 @@ fun countAliveNeighbours(field: Array<Array<Int>>, y: Int, x: Int): Int {
 }
 
 fun mod(a: Int, b: Int): Int {
-    if (a > 0) return a % b
-    if (a < 0) return (a + b) % b
-    return 0
+    return (a + b) % b
 }
 
 fun dumpField(field: Array<Array<Int>>) {

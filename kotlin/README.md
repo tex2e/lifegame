@@ -1,5 +1,11 @@
 # Lifegame in Kotlin
 
+## Install
+
+```
+brew install kotlin
+```
+
 ## Usage
 
 ```

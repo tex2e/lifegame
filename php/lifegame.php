@@ -30,11 +30,11 @@ class Lifegame {
     $newField = [];
     for ($y = 0; $y < $this->height; $y++) {
       for ($x = 0; $x < $this->width; $x++) {
-        $aliveNeighbours = $this->countAliveNeighbours($y, $x);
-        if ($aliveNeighbours <= 1) $newField[$y][$x] = 0;
-        if ($aliveNeighbours == 2) $newField[$y][$x] = $this->field[$y][$x];
-        if ($aliveNeighbours == 3) $newField[$y][$x] = 1;
-        if ($aliveNeighbours >= 4) $newField[$y][$x] = 0;
+        switch ($this->countAliveNeighbours($y, $x)) {
+          case 2:  $newField[$y][$x] = $this->field[$y][$x]; break;
+          case 3:  $newField[$y][$x] = 1;                    break;
+          default: $newField[$y][$x] = 0;                    break;
+        }
       }
     }
     return $newField;
@@ -54,9 +54,7 @@ class Lifegame {
   }
 
   private function mod($a, $b) {
-    if ($a > 0) return $a % $b;
-    if ($a < 0) return ($a + $b) % $b;
-    return 0;
+    return ($a + $b) % $b;
   }
 
   public function dumpField() {

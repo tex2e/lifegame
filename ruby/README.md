@@ -1,5 +1,11 @@
 # Lifegame in Ruby
 
+## Install
+
+```
+brew install ruby
+```
+
 ## Usage
 
 ```

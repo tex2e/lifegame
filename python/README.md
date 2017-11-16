@@ -1,7 +1,13 @@
 # Lifegame in Python
 
+## Install
+
+```
+brew install python3
+```
+
 ## Usage
 
 ```
-python lifegame.py
+python3 lifegame.py
 ```

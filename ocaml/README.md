@@ -1,5 +1,11 @@
 # Lifegame in Ocaml
 
+## Install
+
+```
+brew install ocaml
+```
+
 ## Usage
 
 ```

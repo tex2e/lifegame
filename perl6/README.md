@@ -1,5 +1,11 @@
 # Lifegame in Perl6
 
+## Install
+
+```
+brew install rakudo-star
+```
+
 ## Usage
 
 ```

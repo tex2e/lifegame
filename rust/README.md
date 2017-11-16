@@ -1,5 +1,11 @@
 # Lifegame in Rust
 
+## Install
+
+```
+brew install rust
+```
+
 ## Install Libraries
 
 ```

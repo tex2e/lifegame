@@ -33,11 +33,11 @@ class Lifegame {
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
         if (!newField[y]) newField[y] = [];
-        let aliveNeighbours = this.countAliveNeighbours(field, y, x);
-        if (aliveNeighbours <= 1) newField[y][x] = 0;
-        if (aliveNeighbours == 2) newField[y][x] = field[y][x];
-        if (aliveNeighbours == 3) newField[y][x] = 1;
-        if (aliveNeighbours >= 4) newField[y][x] = 0;
+        switch (this.countAliveNeighbours(field, y, x)) {
+          case 2:  newField[y][x] = field[y][x]; break;
+          case 3:  newField[y][x] = 1;           break;
+          default: newField[y][x] = 0;           break;
+        }
       }
     }
     return newField;
@@ -57,9 +57,7 @@ class Lifegame {
   }
 
   mod(a: number, b: number): number {
-    if (a > 0) return a % b;
-    if (a < 0) return (a + b) % b;
-    return 0;
+    return (a + b) % b;
   }
 
   dumpField() {

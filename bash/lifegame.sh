@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Compare versions in pure bash
+# Usage:
+#   vercomp 3.0 3.0   == 0
+#   vercomp 3.2 3.1.4 == 1
+#   vercomp 3.2 3.14  == 2
+#
 vercomp () {
   if [[ $1 == $2 ]]; then
     return 0

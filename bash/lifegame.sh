@@ -19,14 +19,14 @@ vercomp () {
       return 1
     fi
     if ((10#${ver1[i]} < 10#${ver2[i]})); then
-      return -1
+      return 2
     fi
   done
   return 0
 }
 
 vercomp "$BASH_VERSION" 4.0
-if [[ $? -lt 0 ]]; then
+if [[ $? -eq 2 ]]; then
   echo "Error: Require bash >= 4.0"
   exit
 fi

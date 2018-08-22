@@ -1,0 +1,117 @@
+
+\documentclass[a4j, 10pt, dvipdfmx, twocolumn]{jsarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{ifthen}
+\usepackage{intcalc}
+
+\begin{document}
+{\Large Hello, \LaTeX. }
+
+\vspace{1mm}
+\makeatletter
+% フィールドは field/<y座標>/<x座標>
+\def\maxx{10}
+\def\maxy{6}
+\def\alive{1}
+\def\dead{0}
+\newcount\n
+
+% % 乱数でフィールドを初期化
+% \foreach \fy in {0,1,...,\maxy} {
+%   \foreach \fx in {0,1,...,\maxx} {
+%     \pgfmathrandominteger{\random}{0}{1}
+%     \global\expandafter\edef\csname field/\fy/\fx\endcsname{\random}
+%   }
+% }
+% % グライダーでフィールドを初期化
+\foreach \fy in {0,1,...,\maxy} {
+  \foreach \fx in {0,1,...,\maxx} {
+    \global\expandafter\edef\csname field/\fy/\fx\endcsname{0}
+  }
+}
+\global\expandafter\edef\csname field/2/0\endcsname{1}
+\global\expandafter\edef\csname field/2/1\endcsname{1}
+\global\expandafter\edef\csname field/2/2\endcsname{1}
+\global\expandafter\edef\csname field/3/2\endcsname{1}
+\global\expandafter\edef\csname field/4/1\endcsname{1}
+
+\def\dumpField{
+  \begin{tikzpicture}[scale=0.5]
+    \foreach \fy in {0,1,...,\maxy} {
+      \foreach \fx in {0,1,...,\maxx} {
+        \ifnum \@nameuse{field/\fy/\fx}=\dead
+          \draw[black, fill=white] (\fx, \fy) rectangle +(1,1);
+        \else
+          \draw[black, fill=black] (\fx, \fy) rectangle +(1,1);
+        \fi
+      }
+    }
+  \end{tikzpicture}
+}
+
+% newField を作る
+
+\def\evolve{
+  % \message{(}
+  \foreach \fy in {\maxy,...,0} {
+    % \message{(}
+    \foreach \fx in {0,...,\maxx} {
+      \newcount\nextstate
+      \newcount\aliveNeighbours
+      \foreach \yi in {-1,0,1} {
+        \foreach \xi in {-1,0,1} {
+          \ifthenelse{\xi=0 \AND \yi=0}{
+            % continue
+          }{
+            \newcount\x
+            \newcount\y
+            \x=\intcalcMod{\fx+\xi}{\maxx+1}
+            \y=\intcalcMod{\fy+\yi}{\maxy+1}
+            \ifnum \@nameuse{field/\the\y/\the\x}=\alive
+              \global\advance\aliveNeighbours by 1
+            \fi
+          }
+        }
+      }
+      % \message{\the\aliveNeighbours ->}
+      \ifnum \aliveNeighbours=2
+        \nextstate\@nameuse{field/\fy/\fx}
+      \else
+        \ifnum \aliveNeighbours=3
+          \nextstate\alive
+        \else
+          \nextstate\dead
+        \fi
+      \fi
+      % \message{\the\nextstate}
+      \global\expandafter\edef\csname newField/\fy/\fx\endcsname{\the\nextstate}
+    }
+    % \message{)}
+  }
+  % \message{)}
+  \foreach \fy in {0,1,...,\maxy} {
+    \foreach \fx in {0,1,...,\maxx} {
+      \global\expandafter\edef\csname field/\fy/\fx\endcsname{\@nameuse{newField/\fy/\fx}}
+      \@namedef{newField/\fy/\fx}{\relax}
+    }
+  }
+}
+
+\dumpField
+\relax
+\vspace{5mm}
+
+\foreach \i in {1,...,20} {
+  \message{\i}
+  \evolve
+  \dumpField
+  \relax
+  \vspace{5mm}
+
+}
+
+\makeatother
+\end{document}

@@ -16,9 +16,8 @@ Public Class Lifegame
 
     Sub InitField(height As Integer, width As Integer)
         Dim randomGen As New Random
-        Dim y, x As Integer
-        For y = 0 To height - 1
-            For x = 0 To width - 1
+        For y As Integer = 0 To height - 1
+            For x As Integer = 0 To width - 1
                 Me.field(y, x) = randomGen.Next(0, 2) '[0,1]
             Next
         Next
@@ -35,9 +34,8 @@ Public Class Lifegame
 
     Private Function Evolve(field(,) As Integer) As Integer(,)
         Dim newField(Me.Height - 1, Me.Width - 1) As Integer
-        Dim y, x As Integer
-        For y = 0 To Me.Height - 1
-            For x = 0 To Me.Width - 1
+        For y As Integer = 0 To Me.Height - 1
+            For x As Integer = 0 To Me.Width - 1
                 Select Case CountAliveNeighbours(field, y, x)
                     Case 2
                         newField(y, x) = field(y, x)
@@ -54,9 +52,8 @@ Public Class Lifegame
     Private Function CountAliveNeighbours(field(,) As Integer,
                                           y As Integer, x As Integer) As Integer
         Dim count As Integer = 0
-        Dim y_i, x_i As Integer
-        For y_i = -1 To 1
-            For x_i = -1 To 1
+        For y_i As Integer = -1 To 1
+            For x_i As Integer = -1 To 1
                 If y_i = 0 And x_i = 0 Then
                     Continue For
                 End If
@@ -74,9 +71,8 @@ Public Class Lifegame
     End Function
 
     Private Sub DumpField()
-        Dim y, x As Integer
-        For y = 0 To Me.Height - 1
-            For x = 0 To Me.Width - 1
+        For y As Integer = 0 To Me.Height - 1
+            For x As Integer = 0 To Me.Width - 1
                 Console.Write(IF(field(y, x) = 0, " ", "o"))
             Next
             Console.WriteLine("|")

@@ -46,7 +46,7 @@ Public Class Lifegame
                 End Select
             Next
         Next
-        Evolve = newField
+        Return newField
     End Function
 
     Private Function CountAliveNeighbours(field(,) As Integer,
@@ -54,16 +54,14 @@ Public Class Lifegame
         Dim count As Integer = 0
         For y_i As Integer = -1 To 1
             For x_i As Integer = -1 To 1
-                If y_i = 0 And x_i = 0 Then
-                    Continue For
-                End If
+                If y_i = 0 And x_i = 0 Then Continue For
 
                 Dim yi As Integer = Modp(y + y_i, Me.Height)
                 Dim xi As Integer = Modp(x + x_i, Me.Width)
                 count += field(yi, xi)
             Next
         Next
-        CountAliveNeighbours = count
+        Return count
     End Function
 
     Private Function Modp(a As Integer, b As Integer) As Integer

@@ -64,7 +64,6 @@ function DumpField($field) {
       } else {
         Write-Host ' ' -NoNewLine
       }
-      # Write-Host $field[$y,$x] -NoNewLine
     }
     Write-Output '|'
   }

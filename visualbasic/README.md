@@ -2,8 +2,13 @@
 
 ## Install
 
-- Visual Studio
+```
+brew install mono
+```
 
 ## Usage
 
-- Run > Start Without Debugging
+```
+vbnc lifegame.vb
+mono lifegame.exe
+```

@@ -3,22 +3,22 @@ Imports System
 Imports System.Threading
 
 Public Class Lifegame
-    Public Property Height As Integer
-    Public Property Width  As Integer
-    Public field(,) As Integer
+    Private mHeight As Integer
+    Private mWidth As Integer
+    Private mField(,) As Integer
 
     Sub New(height As Integer, width As Integer)
-        Me.Height = height
-        Me.Width  = width
-        ReDim field(Me.Height - 1, Me.Width - 1)
-        InitField(Me.Height, Me.Width)
+        Me.mHeight = height
+        Me.mWidth  = width
+        ReDim Me.mField(Me.mHeight - 1, Me.mWidth - 1)
+        InitField(Me.mHeight, Me.mWidth)
     End Sub
 
     Sub InitField(height As Integer, width As Integer)
         Dim randomGen As New Random
         For y As Integer = 0 To height - 1
             For x As Integer = 0 To width - 1
-                Me.field(y, x) = randomGen.Next(0, 2) '[0,1]
+                Me.mField(y, x) = randomGen.Next(0, 2) '[0,1]
             Next
         Next
     End Sub
@@ -26,16 +26,16 @@ Public Class Lifegame
     Public Sub MyLoop()
         While True
             ClearScreen()
-            Me.field = Evolve(Me.field)
+            Me.mField = Evolve(Me.mField)
             DumpField()
             Thread.Sleep(100) '100ms
         End While
     End Sub
 
     Private Function Evolve(field(,) As Integer) As Integer(,)
-        Dim newField(Me.Height - 1, Me.Width - 1) As Integer
-        For y As Integer = 0 To Me.Height - 1
-            For x As Integer = 0 To Me.Width - 1
+        Dim newField(Me.mHeight - 1, Me.mWidth - 1) As Integer
+        For y As Integer = 0 To Me.mHeight - 1
+            For x As Integer = 0 To Me.mWidth - 1
                 Select Case CountAliveNeighbours(field, y, x)
                     Case 2
                         newField(y, x) = field(y, x)
@@ -56,8 +56,8 @@ Public Class Lifegame
             For x_i As Integer = -1 To 1
                 If y_i = 0 And x_i = 0 Then Continue For
 
-                Dim yi As Integer = Modp(y + y_i, Me.Height)
-                Dim xi As Integer = Modp(x + x_i, Me.Width)
+                Dim yi As Integer = Modp(y + y_i, Me.mHeight)
+                Dim xi As Integer = Modp(x + x_i, Me.mWidth)
                 count += field(yi, xi)
             Next
         Next
@@ -69,9 +69,9 @@ Public Class Lifegame
     End Function
 
     Private Sub DumpField()
-        For y As Integer = 0 To Me.Height - 1
-            For x As Integer = 0 To Me.Width - 1
-                Console.Write(IF(field(y, x) = 0, " ", "o"))
+        For y As Integer = 0 To Me.mHeight - 1
+            For x As Integer = 0 To Me.mWidth - 1
+                Console.Write(IF(Me.mField(y, x) = 0, " ", "o"))
             Next
             Console.WriteLine("|")
         Next

@@ -1,5 +1,11 @@
 # Lifegame in Swift
 
+## Install
+
+```
+brew install swift
+```
+
 ## Usage
 
 ```

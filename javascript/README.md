@@ -1,4 +1,4 @@
-# Lifegame in JavaScript
+# Lifegame in JavaScript (Node.js)
 
 ## Install
 

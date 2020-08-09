@@ -73,7 +73,6 @@ class Lifegame {
   }
 
   clearScreen() {
-    // console.log('\033[;H\033[2J');
     console.log('\x1B[2J\x1B[0f\u001b[0;0H');
   }
 }
